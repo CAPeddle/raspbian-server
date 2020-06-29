@@ -7,10 +7,23 @@ The server starts UDP broadcasting the Pi's IP addr
 mjpg-streamer is also set to auto start as service
 https://github.com/jacksonliam/mjpg-streamer
 
-Endpoints exposed 
-/stop-broadcast
+## Endpoints exposed 
 
-/control/{pan-left/pan-right/tilt-up/tilt-down}
+/cmd
+body -> {left/right/up/down}
+These start a continuous movement until max
+
+/cmd/panangle/
+body -> <angle>
+Sets the pan angle to move to
+
+/cmd/tiltangle/
+body -> <angle>
+Sets the tilt angle to move to
+
+/stopbroadcast
+Stops the UDP Broadcast thread
+
 /camera/focus
 /camera/start
 /camera/stop
