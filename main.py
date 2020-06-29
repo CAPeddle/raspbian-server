@@ -70,12 +70,14 @@ def settiltangle():
 
 @post("/cmd")
 def cmd():
-    global HStep,VStep,HPulse,VPulse
+    global HStep,VStep,HPulse,VPulse, HPulseTarget, VPulseTarget
     code = request.body.read().decode()
     
     if code == "stop":
         HStep = 0.0
         VStep = 0.0
+        HPulseTarget = HPulse
+        VPulseTarget = VPulse
         print("stop")
     elif code == "up":
         VStep = -1
@@ -161,9 +163,9 @@ def timerfunc():
         start = int(time.time())
 
     
-    # global t        #Notice: use global variable!
-    # t = threading.Timer(0.02, timerfunc)
-    # t.start()
+    global t        #Notice: use global variable!
+    t = threading.Timer(0.02, timerfunc)
+    t.start()
     
 try:      
     t = threading.Timer(0.02, timerfunc)
@@ -176,11 +178,6 @@ try:
     localhost = s.getsockname()[0]
 
     run(host=localhost, port="8001")
-except KeyboardInterrupt:
-    print ("KeyboardInterrupt")
-    pwm.exit_PCA9685()
-    print ("\nProgram end")
-    exit()  
 except:
     pwm.exit_PCA9685()
     print ("\nProgram end")
