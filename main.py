@@ -2,13 +2,18 @@
 # -*- coding:utf-8 -*-
 from bottle import get,post,run,route,request,template,static_file
 from PCA9685 import PCA9685
+from UdpBroadcast import UdpBroadcast
 import threading
 import os
 import socket
 import time
 
+print("Init Phase")
 pwm = PCA9685(0x40)
 pwm.setPWMFreq(50)
+
+# udpBroadcaster = UdpBroadcast("udpbroadcaster", True)
+udpBroadcaster = UdpBroadcast("udpbroadcaster")
 
 #Set the Horizontal vertical servo parameters
 HPulse = 1500  #Sets the initial Pulse
@@ -42,6 +47,12 @@ def server_static(filename):
 def server_fonts(filename):
     return static_file(filename, root='./fonts/')
 
+@post('/stopbroadcast')
+def stopBroadcast():
+    global udpBroadcaster
+    print ("Stoping broadcast")
+    udpBroadcaster.stop()
+
 @post("/cmd/panangle")
 def setpanangle():
     global HPulseTarget, pwm
@@ -51,7 +62,7 @@ def setpanangle():
     if angle < 10 or angle > 100:
         return "INCORRECT ANGLE"
     else:
-        HPulseTarget = pwm.getPulse(angle)
+        HPulseTarget = int(pwm.getPulse(angle))
         print (HPulseTarget)
     return "OK"
 
@@ -111,12 +122,14 @@ def camera():
 def timerfunc():
     global HPulse,VPulse,HStep,VStep,pwm,start,MAX_HPULSE, MIN_HPULSE, HPulseTarget, VPulseTarget, MAX_VPULSE, MIN_VPULSE
     
-    if (HPulseTarget > HPulse and HPulseTarget != -1):
-        HStep = 1
-    elif (HPulseTarget < HPulse and HPulseTarget != -1):
-        HStep = -1
-    else:
-        HPulseTarget = -1
+    if (HPulseTarget != -1):
+        if (HPulseTarget > HPulse):
+            HStep = 1
+        elif (HPulseTarget < HPulse):
+            HStep = -1
+        else:
+            HPulseTarget = -1
+            HStep = 0
 
     if (VPulseTarget > VPulse and VPulseTarget != -1):
         VStep = 1
@@ -124,6 +137,7 @@ def timerfunc():
         VStep = -1
     else:
         VPulseTarget = -1
+        VStep = 0
 
     if(HStep != 0):
         HPulse += HStep
@@ -134,7 +148,7 @@ def timerfunc():
             HPulse = MIN_HPULSE
             HStep = 0
         if(HPulse != MAX_HPULSE and HPulse != MIN_HPULSE):
-            print ("panning {}:{}".format(HStep,HPulse))
+            print ("panning {}:{}:{}".format(HStep,HPulse,HPulseTarget))
         #set channel 2, the Horizontal servo
         pwm.start_PCA9685()
         pwm.setServoPulse(1,HPulse)
@@ -161,24 +175,29 @@ def timerfunc():
     if((end - start) > 3):
         pwm.exit_PCA9685()
         start = int(time.time())
-
     
     global t        #Notice: use global variable!
     t = threading.Timer(0.02, timerfunc)
     t.start()
-    
-try:      
-    t = threading.Timer(0.02, timerfunc)
-    t.setDaemon(True)
-    t.start()
 
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('192.168.0.115', 80))
-    localhost = s.getsockname()[0]
+if __name__ == '__main__':       
+    try:      
+        print ("Starting Main")
+        t = threading.Timer(0.02, timerfunc)
+        t.setDaemon(True)
+        t.start()
+        
+        udpBroadcaster.setDaemon(True)
+        udpBroadcaster.start()
 
-    run(host=localhost, port="8001")
-except:
-    pwm.exit_PCA9685()
-    print ("\nProgram end")
-    exit()
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('192.168.0.115', 80))
+        localhost = s.getsockname()[0]
+
+        run(host=localhost, port="8001")
+    except:        
+        print ("\nProgram end")
+        pwm.exit_PCA9685()
+        udpBroadcaster.stop()
+        exit()

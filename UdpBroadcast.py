@@ -62,18 +62,20 @@ class UdpBroadcast(threading.Thread):
                 pass
 
             except Exception as e:
+                print ("\nProgram end")
+
                 if hasattr(e, 'message'):
                     print(e.message)
                 else:
                     print(e)
 
-                print ("\nProgram end")
                 exit()
 
 
 if __name__ == '__main__':
     udpbroadcast = UdpBroadcast(True)
     try:
+        print ("Starting Thread")
         udpbroadcast.start()
         while True:
             time.sleep(0.02)
