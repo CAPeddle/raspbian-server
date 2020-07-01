@@ -32,9 +32,11 @@ Stops the UDP Broadcast thread
 Control on Restful then eventually Websockets. but initially Restful
 
 
-## Source Projects 
+## Source Projects & Forums
 1. For the UDP broadcasting  https://github.com/ninedraft/python-udp
 
 2. For the Linux Service  https://www.raspberrypi.org/documentation/linux/usage/systemd.md
 
 3. Base site code & servo test https://github.com/waveshare/Pan-Tilt-HAT
+
+4. Disable ACT LED https://www.raspberrypi.org/forums/viewtopic.php?t=149126
