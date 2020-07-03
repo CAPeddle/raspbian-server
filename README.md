@@ -31,6 +31,13 @@ Stops the UDP Broadcast thread
 ## Planning
 Control on Restful then eventually Websockets. but initially Restful
 
+## Frontend Technology
+
+React -> over Vue  because it's more like programming. well JS anyway
+Vue is a lot like HTML, and I don't like HTML or CSS
+
+React vs Bootsrap -> React can lead to React Native
+
 
 ## Source Projects & Forums
 1. For the UDP broadcasting  https://github.com/ninedraft/python-udp
@@ -40,3 +47,5 @@ Control on Restful then eventually Websockets. but initially Restful
 3. Base site code & servo test https://github.com/waveshare/Pan-Tilt-HAT
 
 4. Disable ACT LED https://www.raspberrypi.org/forums/viewtopic.php?t=149126
+
+
