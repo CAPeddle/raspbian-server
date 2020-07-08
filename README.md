@@ -48,4 +48,7 @@ React vs Bootsrap -> React can lead to React Native
 
 4. Disable ACT LED https://www.raspberrypi.org/forums/viewtopic.php?t=149126
 
+5. Audio  https://snowboy.kitt.ai/docs
+arecord --device=hw:1,0 --format S16_LE --duration=10 --rate 44100 -c1 test.wav
+Run alsamixer to adjust gain
 
