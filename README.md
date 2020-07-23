@@ -41,6 +41,23 @@ React vs Bootstrap -> React can lead to React Native
 ## Python
 Ensure the system wide default is Python 3
 
+## Servo control
+Using a MG996R [10] and CYS-3006 [11] servo and the pan tilt kit from DF Robot [9] using the adafruit PCA9685 breakout board. I have the CYS as the tilt servo, servo 0 on the board. 
+
+tiltServo = kit.servo[0]
+panServo = kit.servo[1]
+tiltServo.set_pulse_width_range(500, 2500)
+panServo.set_pulse_width_range(1000, 2000)
+
+Important to note is that setting the panServo.actuation_range = 180 will actually limit the range as well as throw an exception if you try set it past that. I'm not sure but I presume that it then does a pulse width calc to convert the angle to the appropriate value. 
+
+On the CYS servo I had the pwm range as 500 to 2500 but the servo would get a jitter, once checking the data sheet it's indicated as taking 1000 to 2000. Updating that -> no jitter. 
+
+As installed on my gimble the ranges are
+panmaxRange = 170
+tiltmaxRange = 130
+
+
 ## Source Projects & Forums
 1. For the UDP broadcasting  https://github.com/ninedraft/python-udp
 
@@ -62,4 +79,7 @@ Run alsamixer to adjust gain
 
 9. Final Gimble https://www.dfrobot.com/product-146.html
 
+10. https://www.towerpro.com.tw/product/mg996r/
+
+11. # https://www.cysmodel.com/products/cys-s3006-6kg-analog-plastic-gear-servo-standard-size/
 
