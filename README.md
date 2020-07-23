@@ -36,8 +36,10 @@ Control on Restful then eventually Websockets. but initially Restful
 React -> over Vue  because it's more like programming. well JS anyway
 Vue is a lot like HTML, and I don't like HTML or CSS
 
-React vs Bootsrap -> React can lead to React Native
+React vs Bootstrap -> React can lead to React Native
 
+## Python
+Ensure the system wide default is Python 3
 
 ## Source Projects & Forums
 1. For the UDP broadcasting  https://github.com/ninedraft/python-udp
@@ -51,4 +53,13 @@ React vs Bootsrap -> React can lead to React Native
 5. Audio  https://snowboy.kitt.ai/docs
 arecord --device=hw:1,0 --format S16_LE --duration=10 --rate 44100 -c1 test.wav
 Run alsamixer to adjust gain
+
+6. New PWM https://cdn-learn.adafruit.com/downloads/pdf/adafruit-16-channel-servo-driver-with-raspberry-pi.pdf
+
+7. Handy Pin Mappings https://docs.microsoft.com/en-us/windows/iot-core/learn-about-hardware/pinmappings/pinmappingsrpi
+
+8. Additional mappings https://learn.sparkfun.com/tutorials/raspberry-pi-spi-and-i2c-tutorial/all
+
+9. Final Gimble https://www.dfrobot.com/product-146.html
+
 
