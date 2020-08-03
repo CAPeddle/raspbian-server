@@ -31,6 +31,35 @@ Stops the UDP Broadcast thread
 ## Planning
 Control on Restful then eventually Websockets. but initially Restful
 
+---
+### Thoughts
+- Control Camera
+  - If available
+  - Point and "click"
+  - pan/tilt
+
+- Temperature and Humidity logging
+  - If available
+
+- Log Anything
+  - Delete anything
+  - By UID ? names/labels only
+    - The api shouldn't prescribe entries
+  - Get Logged lists by query
+    - When was last entry?
+  - Database 
+    - relational? 
+      - data will be relational, eg temps listes
+
+- Api Versions
+
+
+- Remember last state
+  - Cookies
+  - Meaning upfront configurable detail
+
+---
+
 ## Frontend Technology
 
 React -> over Vue  because it's more like programming. well JS anyway
