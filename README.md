@@ -31,6 +31,8 @@ Stops the UDP Broadcast thread
 ## Planning
 Control on Restful then eventually Websockets. but initially Restful
 
+React has a backend technology and Flask has a frontend tech, using both is a way to be exposed to both.
+
 ---
 ### Thoughts
 - Control Camera
@@ -110,5 +112,8 @@ Run alsamixer to adjust gain
 
 10. https://www.towerpro.com.tw/product/mg996r/
 
-11. # https://www.cysmodel.com/products/cys-s3006-6kg-analog-plastic-gear-servo-standard-size/
+11. https://www.cysmodel.com/products/cys-s3006-6kg-analog-plastic-gear-servo-standard-size/
+
+12. Flask mega tutorial to create blogging site https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world 
+  + Handy to get the database stuff, the migration is pretty useful. configuring a Flask proj, Python3 environments
 
