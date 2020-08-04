@@ -52,7 +52,8 @@ React has a backend technology and Flask has a frontend tech, using both is a wa
   - Database 
     - relational? 
       - data will be relational, eg temps listes
-
+    - Google Sheets, sqllite if the connection is unavailable
+    
 - Api Versions
 
 
