@@ -44,7 +44,8 @@ class UdpBroadcast(threading.Thread):
             # Set a timeout so the socket does not block
             # indefinitely when trying to receive data.
             server.settimeout(0.2)
-            message = bytes(self._localIp, 'utf-8')
+            message_string = '{} {}'.format(socket.gethostname(), self._localIp)
+            message =  bytes(message_string, 'utf-8')
             try:
                 if (self._debug):
                     print("Starting broadcast")
