@@ -119,3 +119,5 @@ Run alsamixer to adjust gain
   + Handy to get the database stuff, the migration is pretty useful. configuring a Flask proj, Python3 environments
 
 13. Good start https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WebTemplateStudio-dev-nightly
+
+14. Combine [13] and https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
