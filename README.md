@@ -118,3 +118,4 @@ Run alsamixer to adjust gain
 12. Flask mega tutorial to create blogging site https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world 
   + Handy to get the database stuff, the migration is pretty useful. configuring a Flask proj, Python3 environments
 
+13. Good start https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WebTemplateStudio-dev-nightly
